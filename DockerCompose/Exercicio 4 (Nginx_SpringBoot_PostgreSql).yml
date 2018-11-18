@@ -1,0 +1,17 @@
+version: "2"
+services:
+    proxy:
+        image: nginx
+        depends_on:
+          - web
+    web:
+        image: spring-boot-helloworld-ui
+        ports: 
+          - "8080:80"
+        depends_on:
+          - postgres
+    postgres:
+        image: postgres
+        restart: always
+        environment:
+          POSTGRES_PASSWORD: example
